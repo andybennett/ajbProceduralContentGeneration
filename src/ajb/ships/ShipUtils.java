@@ -21,25 +21,25 @@ public class ShipUtils {
 
 		for (int i = 0; i < amount; i++) {
 
-			Area area = generateOutline();
+			Area area = generate();
 
-//			for (int x = 0; x < area.getBounds2D().getHeight(); x++) {
-//
-//				GeometryUtils.subtractRandomLine(area);
-//
-//			}
-//			
-//			for (int x = 0; x < 20; x++) {
-//
-//				GeometryUtils.addRandomBlock(area);
-//
-//			}
-//			
-//			for (int x = 0; x < area.getBounds2D().getWidth(); x++) {
-//
-//				GeometryUtils.subtractRandomLine(area);
-//
-//			}			
+			for (int x = 0; x < area.getBounds2D().getHeight() * 2; x++) {
+
+				GeometryUtils.subtractRandomLine(area);
+
+			}
+			
+			for (int x = 0; x < area.getBounds2D().getHeight() / 10; x++) {
+
+				GeometryUtils.addRandomBlock(area);
+
+			}
+			
+			for (int x = 0; x < area.getBounds2D().getHeight(); x++) {
+
+				GeometryUtils.subtractRandomLine(area);
+
+			}			
 
 			area.add(AreaUtils.mirrorAlongX(0, area));
 			area = AreaUtils.translateToTopLeft(area);
@@ -50,7 +50,7 @@ public class ShipUtils {
 
 	}
 
-	public static Area generateOutline() {
+	public static Area generate() {
 
 		// Starting block.
 
