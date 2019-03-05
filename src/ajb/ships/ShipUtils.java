@@ -5,6 +5,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 import ajb.area.AreaUtils;
+import ajb.area.GeometryUtils;
 import ajb.images.ImageUtils;
 import ajb.random.RandomInt;
 
@@ -20,7 +21,34 @@ public class ShipUtils {
 
 		for (int i = 0; i < amount; i++) {
 
-			ImageUtils.save(ImageUtils.drawArea(generateOutline()), "png", "Ship" + i);
+			Area area = generateOutline();
+
+			area.subtract(new Area(new Rectangle2D.Double(area.getBounds2D().getMinX(), area.getBounds2D().getMinY(),
+					area.getBounds2D().getCenterX(), area.getBounds2D().getMaxY())));
+			area = AreaUtils.translateToTopLeft(area);
+			
+//			for (int x = 0; x < area.getBounds2D().getHeight(); x++) {
+//
+//				GeometryUtils.subtractRandomLine(area);
+//
+//			}
+//			
+//			for (int x = 0; x < 20; x++) {
+//
+//				GeometryUtils.addRandomBlock(area);
+//
+//			}
+//			
+//			for (int x = 0; x < area.getBounds2D().getWidth(); x++) {
+//
+//				GeometryUtils.subtractRandomLine(area);
+//
+//			}			
+
+			area.add(AreaUtils.mirrorAlongX(0, area));
+			area = AreaUtils.translateToTopLeft(area);
+
+			ImageUtils.save(ImageUtils.drawArea(area), "png", "Ship" + i);
 
 		}
 
@@ -29,11 +57,11 @@ public class ShipUtils {
 	public static Area generateOutline() {
 
 		// Starting block.
-		
+
 		Area result = new Area(new Rectangle2D.Double(0, 0, 10, 20));
 
 		// Add X additional segments to the starting block.
-		
+
 		int count = RandomInt.anyRandomIntRange(0, 4);
 
 		for (int i = 0; i < count; i++) {
@@ -50,24 +78,24 @@ public class ShipUtils {
 
 		for (int i = 0; i < count; i++) {
 
-			AreaUtils.addRandomBlock(result);
+			GeometryUtils.addRandomBlock(result);
 
 		}
 
 		// Mirror it.
-		
+
 		result.add(AreaUtils.mirrorAlongX(0, result));
-		
+
 		// Get the outline - removes empty areas within.
-		
+
 		result = AreaUtils.getOutline(result);
-		
+
 		// Move it to the top left.
-		
+
 		result = AreaUtils.translateToTopLeft(result);
 
 		// Create an image with the area drawn on it.
-		
+
 		return result;
 
 	}
@@ -80,5 +108,5 @@ public class ShipUtils {
 		return result;
 
 	}
-	
+
 }
