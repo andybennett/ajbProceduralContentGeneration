@@ -1,13 +1,10 @@
 package ajb.ships;
 
-import java.awt.Graphics2D;
 import java.awt.geom.Area;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
 
 import ajb.area.AreaUtils;
-import ajb.colours.ColourUtils;
 import ajb.images.ImageUtils;
 import ajb.random.RandomInt;
 
@@ -23,31 +20,20 @@ public class ShipUtils {
 
 		for (int i = 0; i < amount; i++) {
 
-			Area result = generate();
-
-			BufferedImage img = ImageUtils.create(result.getBounds2D().getMaxX(), result.getBounds2D().getMaxY());
-
-			Graphics2D gr = (Graphics2D) img.getGraphics();
-
-			gr.setColor(ColourUtils.background);
-			gr.fillRect(0, 0, img.getWidth(), img.getHeight());
-
-			gr.setColor(ColourUtils.gray);
-
-			gr.fill(result);
-
-			gr.dispose();
-
-			ImageUtils.save(img, "png", "Vessel" + i);
+			ImageUtils.save(ImageUtils.drawArea(generateOutline()), "png", "Ship" + i);
 
 		}
 
 	}
 
-	public static Area generate() {
+	public static Area generateOutline() {
 
+		// Starting block.
+		
 		Area result = new Area(new Rectangle2D.Double(0, 0, 10, 20));
 
+		// Add X additional segments to the starting block.
+		
 		int count = RandomInt.anyRandomIntRange(0, 4);
 
 		for (int i = 0; i < count; i++) {
@@ -58,7 +44,7 @@ public class ShipUtils {
 
 		}
 
-		// Mess it up a bit
+		// Mess it up a bit.
 
 		count = RandomInt.anyRandomIntRange(50, 100);
 
@@ -68,15 +54,25 @@ public class ShipUtils {
 
 		}
 
+		// Mirror it.
+		
 		result.add(AreaUtils.mirrorAlongX(0, result));
+		
+		// Get the outline - removes empty areas within.
+		
 		result = AreaUtils.getOutline(result);
+		
+		// Move it to the top left.
+		
 		result = AreaUtils.translateToTopLeft(result);
 
+		// Create an image with the area drawn on it.
+		
 		return result;
 
 	}
 
-	public static Area createSegment() {
+	private static Area createSegment() {
 
 		Area result = new Area(
 				new Rectangle2D.Double(0, 0, RandomInt.anyRandomIntRange(10, 20), RandomInt.anyRandomIntRange(20, 50)));
@@ -84,4 +80,5 @@ public class ShipUtils {
 		return result;
 
 	}
+	
 }
