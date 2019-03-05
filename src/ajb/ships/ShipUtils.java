@@ -23,10 +23,6 @@ public class ShipUtils {
 
 			Area area = generateOutline();
 
-			area.subtract(new Area(new Rectangle2D.Double(area.getBounds2D().getMinX(), area.getBounds2D().getMinY(),
-					area.getBounds2D().getCenterX(), area.getBounds2D().getMaxY())));
-			area = AreaUtils.translateToTopLeft(area);
-			
 //			for (int x = 0; x < area.getBounds2D().getHeight(); x++) {
 //
 //				GeometryUtils.subtractRandomLine(area);
@@ -74,7 +70,7 @@ public class ShipUtils {
 
 		// Mess it up a bit.
 
-		count = RandomInt.anyRandomIntRange(50, 100);
+		count = RandomInt.anyRandomIntRange(50, 500);
 
 		for (int i = 0; i < count; i++) {
 
@@ -94,7 +90,14 @@ public class ShipUtils {
 
 		result = AreaUtils.translateToTopLeft(result);
 
-		// Create an image with the area drawn on it.
+		// Subtract the left hand side of the area.
+		
+		result.subtract(new Area(new Rectangle2D.Double(result.getBounds2D().getMinX(), result.getBounds2D().getMinY(),
+				result.getBounds2D().getCenterX(), result.getBounds2D().getMaxY())));
+		
+		// Move it to the top left.		
+		
+		result = AreaUtils.translateToTopLeft(result);		
 
 		return result;
 
