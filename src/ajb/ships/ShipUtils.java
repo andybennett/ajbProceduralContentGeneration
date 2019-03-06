@@ -54,11 +54,11 @@ public class ShipUtils {
 
 		// Starting block.
 
-		Area result = new Area(new Rectangle2D.Double(0, 0, 10, 40));
+		Area result = new Area(new Rectangle2D.Double(0, 0, 10, 75));
 
 		// Add X additional segments to the starting block.
 
-		int count = RandomInt.anyRandomIntRange(1, 4);
+		int count = RandomInt.anyRandomIntRange(1, 1);
 
 		for (int i = 0; i < count; i++) {
 
@@ -106,7 +106,7 @@ public class ShipUtils {
 	private static Area createSegment() {
 
 		Area result = new Area(
-				new Rectangle2D.Double(0, 0, RandomInt.anyRandomIntRange(10, 50), RandomInt.anyRandomIntRange(50, 200)));
+				new Rectangle2D.Double(0, 0, RandomInt.anyRandomIntRange(10, 50), RandomInt.anyRandomIntRange(10, 75)));
 
 		return result;
 
