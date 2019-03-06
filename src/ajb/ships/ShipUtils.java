@@ -5,7 +5,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 import ajb.area.AreaUtils;
-import ajb.area.GeometryUtils;
+import ajb.geometry.GeometryUtils;
 import ajb.images.ImageUtils;
 import ajb.random.RandomInt;
 
