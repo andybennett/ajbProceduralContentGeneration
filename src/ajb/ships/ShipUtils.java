@@ -35,7 +35,7 @@ public class ShipUtils {
 
 			}
 			
-			for (int x = 0; x < area.getBounds2D().getHeight(); x++) {
+			for (int x = 0; x < area.getBounds2D().getHeight() / 3; x++) {
 
 				GeometryUtils.subtractRandomLine(area);
 
@@ -106,7 +106,7 @@ public class ShipUtils {
 	private static Area createSegment() {
 
 		Area result = new Area(
-				new Rectangle2D.Double(0, 0, RandomInt.anyRandomIntRange(10, 20), RandomInt.anyRandomIntRange(50, 200)));
+				new Rectangle2D.Double(0, 0, RandomInt.anyRandomIntRange(10, 50), RandomInt.anyRandomIntRange(50, 200)));
 
 		return result;
 
