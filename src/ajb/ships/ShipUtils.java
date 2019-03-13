@@ -58,7 +58,7 @@ public class ShipUtils {
 
 		// Add X additional segments to the starting block.
 
-		int count = RandomInt.anyRandomIntRange(1, 1);
+		int count = RandomInt.anyRandomIntRange(1, 10);
 
 		for (int i = 0; i < count; i++) {
 
