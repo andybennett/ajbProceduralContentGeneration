@@ -106,7 +106,7 @@ public class ShipUtils {
 	private static Area createSegment() {
 
 		Area result = new Area(
-				new Rectangle2D.Double(0, 0, RandomInt.anyRandomIntRange(10, 50), RandomInt.anyRandomIntRange(10, 75)));
+				new Rectangle2D.Double(0, 0, RandomInt.anyRandomIntRange(5, 20), RandomInt.anyRandomIntRange(10, 40)));
 
 		return result;
 
