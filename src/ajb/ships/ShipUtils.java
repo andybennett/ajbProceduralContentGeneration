@@ -68,16 +68,6 @@ public class ShipUtils {
 
 		}
 
-		// Mess it up a bit.
-
-//		count = RandomInt.anyRandomIntRange(50, 500);
-//
-//		for (int i = 0; i < count; i++) {
-//
-//			GeometryUtils.addRandomBlock(result);
-//
-//		}
-
 		// Mirror it.
 
 		result.add(AreaUtils.mirrorAlongX(0, result));
