@@ -54,7 +54,7 @@ public class ShipUtils {
 
 		// Starting block.
 
-		Area result = new Area(new Rectangle2D.Double(0, 0, 10, 40));
+		Area result = createSegment();
 
 		// Add X additional segments to the starting block.
 
